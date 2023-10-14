@@ -23,6 +23,7 @@ export const App = () => {
     if (!search) {
       return;
     }
+
     const fetchSearchImg = async () => {
       try {
         const { hits, totalHits } = await fetchImg(search, page);
@@ -43,6 +44,7 @@ export const App = () => {
         setIsLoading(false);
       }
     };
+
     fetchSearchImg();
   }, [page, search]);
 
