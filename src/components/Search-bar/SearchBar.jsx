@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import css from './SearchBar.module.css';
+import { ReactComponent as Icon } from '../icon/search-svgrepo-com.svg';
 
 export class SearchBar extends Component {
   state = {
@@ -32,6 +33,7 @@ export class SearchBar extends Component {
         >
           <button type="submit" className={css.SearchFormButton}>
             <span className={css.SearchFormButtonLabel}>Search</span>
+            <Icon />
           </button>
           <input
             type="text"

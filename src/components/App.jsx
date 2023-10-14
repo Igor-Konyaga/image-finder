@@ -38,7 +38,7 @@ export class App extends Component {
       if (totalHits === 0) {
         Notiflix.Notify.info(`No results found for ${this.state.search}`);
         return;
-      } else {
+      } else if (this.state.page === 1) {
         Notiflix.Notify.success(
           `${totalHits} images were found for the '${this.state.search}' query`
         );
@@ -110,7 +110,11 @@ export class App extends Component {
         />
         {this.state.loadMore && <Button handleClick={this.handleClick} />}
         {this.state.modal && (
-          <Modal urlImg={this.state.urlBigImg} onCloseBtb={this.onCloseBtb} onHandleKey={this.handleKey}/>
+          <Modal
+            urlImg={this.state.urlBigImg}
+            onCloseBtb={this.onCloseBtb}
+            onHandleKey={this.handleKey}
+          />
         )}
         {this.state.error && Notiflix.Notify.failure(this.state.error)}
       </div>
