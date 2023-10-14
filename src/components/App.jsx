@@ -19,31 +19,30 @@ export const App = () => {
   const [urlBigImg, setUrlBigImg] = useState(null);
   const [error, setError] = useState(null);
 
-  const fetchSearchImg = async () => {
-    try {
-      const { hits, totalHits } = await fetchImg(search, page);
-      if (totalHits === 0) {
-        Notiflix.Notify.info(`No results found for ${search}`);
-        return;
-      } else if (page === 1) {
-        Notiflix.Notify.success(
-          `${totalHits} images were found for the '${search}' query`
-        );
-      }
-
-      setImages(prevState => [...(prevState || []), ...hits]);
-      setLoadMore(page < Math.ceil(totalHits / 12));
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   useEffect(() => {
     if (!search) {
       return;
     }
+    const fetchSearchImg = async () => {
+      try {
+        const { hits, totalHits } = await fetchImg(search, page);
+        if (totalHits === 0) {
+          Notiflix.Notify.info(`No results found for ${search}`);
+          return;
+        } else if (page === 1) {
+          Notiflix.Notify.success(
+            `${totalHits} images were found for the '${search}' query`
+          );
+        }
+
+        setImages(prevState => [...(prevState || []), ...hits]);
+        setLoadMore(page < Math.ceil(totalHits / 12));
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
     fetchSearchImg();
   }, [page, search]);
 
