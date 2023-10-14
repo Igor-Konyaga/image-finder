@@ -19,13 +19,6 @@ export const App = () => {
   const [urlBigImg, setUrlBigImg] = useState(null);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    if (!search) {
-      return;
-    }
-    fetchSearchImg();
-  }, [page, search]);
-
   const fetchSearchImg = async () => {
     try {
       const { hits, totalHits } = await fetchImg(search, page);
@@ -46,6 +39,13 @@ export const App = () => {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (!search) {
+      return;
+    }
+    fetchSearchImg();
+  }, [page, search]);
 
   const handleKey = e => {
     if (e.key === 'Escape') {

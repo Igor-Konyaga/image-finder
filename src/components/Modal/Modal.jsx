@@ -8,7 +8,7 @@ export const Modal = ({ onCloseBtb, urlImg, onHandleKey }) => {
     return () => {
       window.removeEventListener('keydown', onHandleKey);
     };
-  }, []);
+  }, [onHandleKey]);
 
   return (
     <div className={css.Overlay} onClick={onCloseBtb}>
